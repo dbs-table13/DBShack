@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { FaPlusCircle } from "react-icons/fa";
 import "../Destination.css";
+import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
-import { useEffect } from "react";
 
 const destinationsToGo = [
   {
@@ -52,65 +52,67 @@ const MyDestinations = ({ dest }) => {
   // }, []);
 
   return (
-    <div className="center">
-      <Box sx={{ maxWidth: 345 }} m={2} className="center">
-        <Card p={2}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={dest.imgLocation}
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {dest.destination}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {dest.country}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              ${dest.budget}
-            </Typography>
-          </CardContent>
-          <div>
-            <Button
-              className="center"
-              m={2}
-              p={2}
-              onClick={() => handleAddDestination()}
-            >
-              <span>Add </span> <FaPlusCircle m={2} className="center" />
-            </Button>
-          </div>
-        </Card>
-      </Box>
-    </div>
+    <>
+      <div className="center">
+        <Box sx={{ maxWidth: 345 }} m={2} className="center">
+          <Card p={2}>
+            <CardMedia
+              component="img"
+              height="140"
+              image={dest.imgLocation}
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {dest.destination}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {dest.country}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                ${dest.budget}
+              </Typography>
+            </CardContent>
+            <div>
+              <Button
+                className="center"
+                m={2}
+                p={2}
+                onClick={() => handleAddDestination()}
+              >
+                <span>Add </span> <FaPlusCircle m={2} className="center" />
+              </Button>
+            </div>
+          </Card>
+        </Box>
+      </div>
+    </>
   );
 };
 
 const Destination = () => {
   return (
-    <div className="policies-grid">
-      {destinationsToGo.map((destination, index) => (
-        <div className="flex-item relative" key={index}>
-          <MyDestinations key={index} dest={destination} />
+    <>
+      <h1 className="center">Explore Destinations</h1>
+      <div className="policies-grid">
+        {destinationsToGo.map((destination, index) => (
+          <div className="flex-item relative" key={index}>
+            <MyDestinations key={index} dest={destination} />
+          </div>
+        ))}
+        <div className="center">
+          <Box sx={{ maxWidth: 345 }} m={2} className="center">
+            <Card p={2}>
+              <CardContent className="center">
+                <Button variant="outlined" startIcon={<AddIcon />}>
+                  Add Your Own Destination
+                </Button>
+              </CardContent>
+            </Card>
+          </Box>
         </div>
-      ))}
-      <div className="center">
-        <Box sx={{ maxWidth: 345 }} m={2} className="center">
-          <Card p={2}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Add a new destination
-              </Typography>
-              <Button variant="" m={2} p={2} className="cente">
-                <FaPlusCircle className="big-button" />
-              </Button>
-            </CardContent>
-          </Card>
-        </Box>
       </div>
-    </div>
+    </>
   );
 };
 
