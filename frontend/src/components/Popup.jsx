@@ -18,6 +18,8 @@ import { InputAdornment } from "@mui/material";
 // function on the dashboard page
 
 const style = {
+  display: "flex",
+  flexDirection: "column",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -26,6 +28,7 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
+  padding: 16,
   p: 4,
 };
 
@@ -36,10 +39,12 @@ export default function Popup() {
   // Todo: Change back to false
   const [open, setOpen] = useState(true);
   const [countryField, setCountryField] = useState("Singapore");
+  const [budgetField, setBudgetField] = useState(0);
   const [destinations, setDestinations] = useState(destination);
 
   // CountryField
-  const handleChange = (e) => setCountryField(e.target.value);
+  const handleCountryChange = (e) => setCountryField(e.target.value);
+  const handleBudgetChange = (e) => setBudgetField(Number(e.target.value));
 
   // Open and close modal function
   // const handleOpen = () => setOpen(true);
@@ -56,11 +61,11 @@ export default function Popup() {
     );
   });
 
-  // React hook form
+  // Todo: Change destination to API response
   const destinationItems = destinations.map((destination, index) => {
     return (
       <>
-        <TextField
+        <TextField key={destination}
           id="filled-basic"
           label={`Destination ${index + 1}:`}
           variant="filled"
@@ -78,6 +83,7 @@ export default function Popup() {
             variant="contained"
             disabled={destination === ""}
             onClick={() => handleAddInput()}
+            style={{justifySelf: "end"}}
           >
             Add destination
           </Button>
@@ -101,11 +107,12 @@ export default function Popup() {
             ),
           }}
         />
-        <InputLabel id="country-select-label">Country</InputLabel>
         <TextField
           id="filled-basic"
           label="Budget"
           variant="filled"
+          value={budgetField}
+          onChange={handleBudgetChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -114,13 +121,15 @@ export default function Popup() {
             ),
           }}
         />
-        <InputLabel id="budget-label">budget</InputLabel>
+        <InputLabel id="budget-label">Country</InputLabel>
+        // Todo: update disabled based on "update" or "create"
         <Select
           labelId="country-select-label"
           id="country-select"
           value={countryField}
           label="Country"
-          onChange={handleChange}
+          onChange={handleCountryChange}
+          disabled={true}
         >
           {countriesItem}
         </Select>
