@@ -1,14 +1,18 @@
+import axios from "axios";
+import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import TitleIcon from "@mui/icons-material/Title";
-import { useState } from "react";
 import { InputAdornment } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
+
+
 // Props: Title, country,
 // Modalprops: open, handleClose fn
 
@@ -31,10 +35,17 @@ const style = {
 
 const countries = ["Singapore", "Japan", "Korea"];
 
-export default function Popup({ action, destination, budget, country, open, setOpen, userId}) {
-  // Todo: Change back to false
-  const [countryField, setCountryField] = useState("Singapore");
-  const [budgetField, setBudgetField] = useState(0);
+// eslint-disable-next-line react/prop-types
+export default function Popup({ action, data, open, setOpen}) {
+  // eslint-disable-next-line react/prop-types
+  const { destinations, budget, country, title, itinerary_id } = data;
+  const [titleField, setTitleField] = useState(title);
+  const [countryField, setCountryField] = useState(country);
+  const [budgetField, setBudgetField] = useState(budget);
+  const [destinationObject, setDestinationObject] = useState(destinations);
+
+  //titleField
+  const handleTitleChange = (e) => setTitleField(e.target.value);
 
   // CountryField
   const handleCountryChange = (e) => setCountryField(e.target.value);
@@ -43,7 +54,6 @@ export default function Popup({ action, destination, budget, country, open, setO
   // Open and close modal function
   // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [destinationObject, setDestinationObject] = useState(destination);
   const handleDestinationInput = (e) => {
     return setDestinationObject((prevState) => {
       return {...prevState, [e.target.name]: e.target.value};
@@ -59,6 +69,21 @@ export default function Popup({ action, destination, budget, country, open, setO
     );
   });
 
+  // POST OR PATCH DATA according to action prop
+  const handleSubmit = async () => {
+    const data = {
+      title: titleField,
+      budget: budgetField,
+      destinations: new Array(destinationObject),
+    }
+    if (action === "create") {
+      await axios.post("http://localhost:3001/itinerary", data)
+    }
+
+    const url = `http://localhost:3001/itinerary/${itinerary_id}`;
+    await axios.put(url, data);
+  }
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Box component="form" noValidate autoComplete="off" style={style}>
@@ -66,6 +91,8 @@ export default function Popup({ action, destination, budget, country, open, setO
           id="filled-basic"
           label="Title"
           variant="filled"
+          value={titleField}
+          onChange={handleTitleChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -145,6 +172,7 @@ export default function Popup({ action, destination, budget, country, open, setO
             }}
           />
         </Box>
+        <Button onClick={() => handleSubmit()} variant="contained">{action === "create" ? "Create new itinerary" : "Update itinerary"}</Button>
       </Box>
     </Modal>
   );
