@@ -33,7 +33,6 @@
   .login-container form input[type="password"] {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
     border-radius: 4px;
   }
   
@@ -69,8 +68,8 @@
 
 /*  create a backgroundimagefor login page */
 
-.login-container {
-  background-image: url('path-to-your-image.jpg');
+.main {
+  background-image: url('nature.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
