@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { FaPlusCircle } from "react-icons/fa";
 import "../Destination.css";
 import axios from "axios";
-import { useEffect} from "react";
+import { useEffect } from "react";
 
 const destinationsToGo = [
 	{
@@ -36,7 +36,7 @@ const destinationsToGo = [
 	},
 ];
 const MyDestinations = ({ dest }) => {
-    // useEffect(() => {
+	// useEffect(() => {
 	// 	if (employeeId) {
 	// 		axios
 	// 			.get(`http://localhost:3001/xxxx`, {
@@ -72,14 +72,16 @@ const MyDestinations = ({ dest }) => {
 							${dest.budget}
 						</Typography>
 					</CardContent>
-					<Button
-						variant="contained"
-						m={2}
-						p={2}
-						onClick={() => handleAddDestination()}
-					>
-						Add <FaPlusCircle />
-					</Button>
+					<div>
+						<Button
+							className="center"
+							m={2}
+							p={2}
+							onClick={() => handleAddDestination()}
+						>
+							<span>Add </span> <FaPlusCircle m={2} className="center" />
+						</Button>
+					</div>
 				</Card>
 			</Box>
 		</div>
@@ -94,18 +96,31 @@ const Destination = () => {
 					<MyDestinations key={index} dest={destination} />
 				</div>
 			))}
-			<Box sx={{ maxWidth: 345 }} m={2}>
-				<Card p={2}>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="div">
-							Add your own destination
-						</Typography>
-					</CardContent>
-					<Button variant="" m={2} p={2} >
-						<FaPlusCircle className="big-button" onClick={() => handleAddDestination()}/>
-					</Button>
-				</Card>
-			</Box>
+			<div className="center">
+				<Box sx={{ maxWidth: 345 }} m={2} className="center">
+					<Card p={2}>
+						<CardContent>
+							<Typography gutterBottom variant="h5" component="div">
+								Add a new destination
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									strokeWidth={1}
+									stroke="currentColor"
+									className="w-1 h-1"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</Typography>
+						</CardContent>
+					</Card>
+				</Box>
+			</div>
 		</div>
 	);
 };
