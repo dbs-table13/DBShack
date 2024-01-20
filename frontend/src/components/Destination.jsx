@@ -52,8 +52,8 @@ const MyDestinations = ({ dest }) => {
 	// }, []);
 
 	return (
-		<div>
-			<Box sx={{ maxWidth: 345 }} m={2}>
+		<div className="center">
+			<Box sx={{ maxWidth: 345 }} m={2} className="center">
 				<Card p={2}>
 					<CardMedia
 						component="img"
@@ -72,7 +72,12 @@ const MyDestinations = ({ dest }) => {
 							${dest.budget}
 						</Typography>
 					</CardContent>
-					<Button variant="contained" m={2} p={2} onClick={() => handleAddDestination()}>
+					<Button
+						variant="contained"
+						m={2}
+						p={2}
+						onClick={() => handleAddDestination()}
+					>
 						Add <FaPlusCircle />
 					</Button>
 				</Card>
