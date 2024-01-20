@@ -1,16 +1,14 @@
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import TitleIcon from "@mui/icons-material/Title";
-import ExploreIcon from "@mui/icons-material/Explore";
-
 import { useState } from "react";
 import { InputAdornment } from "@mui/material";
+import ExploreIcon from "@mui/icons-material/Explore";
 // Props: Title, country,
 // Modalprops: open, handleClose fn
 
@@ -25,7 +23,6 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   padding: 16,
@@ -33,14 +30,11 @@ const style = {
 };
 
 const countries = ["Singapore", "Japan", "Korea"];
-const destination = ["Zoo", "MBS", "DBS bank"];
 
-export default function Popup() {
+export default function Popup({ action, destination, budget, country, open, setOpen, userId}) {
   // Todo: Change back to false
-  const [open, setOpen] = useState(true);
   const [countryField, setCountryField] = useState("Singapore");
   const [budgetField, setBudgetField] = useState(0);
-  const [destinations, setDestinations] = useState(destination);
 
   // CountryField
   const handleCountryChange = (e) => setCountryField(e.target.value);
@@ -49,46 +43,19 @@ export default function Popup() {
   // Open and close modal function
   // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [destinationObject, setDestinationObject] = useState(destination);
+  const handleDestinationInput = (e) => {
+    return setDestinationObject((prevState) => {
+      return {...prevState, [e.target.name]: e.target.value};
+    });
+  }
 
-  // Add Destination input button
-  const handleAddInput = () => setDestinations([...destinations, ""]);
 
   const countriesItem = countries.map((country) => {
     return (
       <MenuItem key={country} value={country}>
         {country}
       </MenuItem>
-    );
-  });
-
-  // Todo: Change destination to API response
-  const destinationItems = destinations.map((destination, index) => {
-    return (
-      <>
-        <TextField key={destination}
-          id="filled-basic"
-          label={`Destination ${index + 1}:`}
-          variant="filled"
-          value={destination}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ExploreIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        {index === destinations.length - 1 && (
-          <Button
-            variant="contained"
-            disabled={destination === ""}
-            onClick={() => handleAddInput()}
-            style={{justifySelf: "end"}}
-          >
-            Add destination
-          </Button>
-        )}
-      </>
     );
   });
 
@@ -122,7 +89,6 @@ export default function Popup() {
           }}
         />
         <InputLabel id="budget-label">Country</InputLabel>
-        // Todo: update disabled based on "update" or "create"
         <Select
           labelId="country-select-label"
           id="country-select"
@@ -133,7 +99,52 @@ export default function Popup() {
         >
           {countriesItem}
         </Select>
-        {destinationItems}
+        <Box key={destinationObject.name}>
+          <TextField key={destinationObject.name}
+                     id="filled-basic"
+                     label={`Destination`}
+                     variant="filled"
+                     value={destinationObject.name}
+                     onChange={handleDestinationInput}
+                     InputProps={{
+                       startAdornment: (
+                         <InputAdornment position="start">
+                           <ExploreIcon />
+                         </InputAdornment>
+                       ),
+                     }}
+          />
+          <TextField
+            id="filled-basic"
+            label="Cost"
+            variant="filled"
+            value={destinationObject.cost}
+            onChange={handleDestinationInput}
+            type="number"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MonetizationOnIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            id="filled-basic"
+            label="Notes"
+            variant="filled"
+            type="string"
+            value={destinationObject.notes}
+            onChange={handleDestinationInput}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <TitleIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
       </Box>
     </Modal>
   );
