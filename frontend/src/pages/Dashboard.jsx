@@ -6,9 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-const Dashboard = () => {
-	return <div>
-		<h1>Dashboard</h1>
+const MyItenary = ({ itenary }) => {
+	return (
 		<Box sx={{ maxWidth: 345 }}>
 			<Card>
 				<CardMedia
@@ -30,11 +29,17 @@ const Dashboard = () => {
 				<Button variant="contained">Delete</Button>
 			</Card>
 		</Box>
+	);
+};
 
-		{/* Bottom is Esther */}
+const Dashboard = () => {
+	return (
+		<div>
+			<h1>Dashboard</h1>
 
-		
-	</div>;
+			{/* Bottom is Esther */}
+		</div>
+	);
 };
 
 export default Dashboard;
