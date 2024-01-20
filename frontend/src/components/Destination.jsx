@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { FaPlusCircle } from "react-icons/fa";
+import Fab from '@mui/material/Fab';
 import "../Destination.css";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
@@ -100,8 +101,7 @@ const Destination = () => {
             <MyDestinations key={index} dest={destination} />
           </div>
         ))}
-        <div className="center">
-          <Box sx={{ maxWidth: 345 }} m={2} className="center">
+        <Box sx={{ maxWidth: 345 }} m={2} className="center">
             <Card p={2}>
               <CardContent className="center">
                 <Button variant="outlined" startIcon={<AddIcon />}>
@@ -110,6 +110,8 @@ const Destination = () => {
               </CardContent>
             </Card>
           </Box>
+        <div className="center">
+    
         </div>
       </div>
     </>

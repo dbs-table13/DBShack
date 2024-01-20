@@ -66,3 +66,11 @@
     text-decoration: underline;
   }
   
+
+/*  create a backgroundimagefor login page */
+
+.login-container {
+  background-image: url('path-to-your-image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
