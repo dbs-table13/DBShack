@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -36,6 +35,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			<h1>Dashboard</h1>
+			<MyItenary />
 
 			{/* Bottom is Esther */}
 		</div>
