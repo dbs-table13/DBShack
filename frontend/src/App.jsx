@@ -6,6 +6,7 @@ import Popup from "./components/Popup.jsx";
 import AddDestination from "./components/AddDestination.jsx";
 import Navbar from "./components/Navbar.jsx";
 import "./App.css";
+import "./index.css"
 
 function App() {
   return (
