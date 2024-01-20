@@ -10,7 +10,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Travel Application</h1>
+      <Navbar />
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
