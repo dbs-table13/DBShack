@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Destination from "../components/Destination";
 
 const MyItenary = ({ itenary }) => {
 	return (
@@ -38,6 +39,7 @@ const Dashboard = () => {
 			<MyItenary />
 
 			{/* Bottom is Esther */}
+			<Destination />
 		</div>
 	);
 };
