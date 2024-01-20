@@ -23,18 +23,18 @@ function ItineraryList() {
 
 	const [open,setOpen] = useState(false);
 	// const [itineraryDetailsModal,setItineraryDetailsModal] = useState(false);
-	// const [itineraryList,setItineraryList] = useState([])
-	const itineraryList = [
-		{itinerary_id: 1,budget: 300, title: 'Austria Itinerary1',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
-		{itinerary_id: 2,budget: 300, title: 'Austria Itinerary2',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
+	const [itineraryList,setItineraryList] = useState([])
+	// const itineraryList = [
+	// 	{itinerary_id: 1,budget: 300, title: 'Austria Itinerary1',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
+	// 	{itinerary_id: 2,budget: 300, title: 'Austria Itinerary2',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
 
 
-	];	
+	// ];	
 
-	// axios.get(`https://localhost:3001/getItinerary`)
-	// 	.then(res => {
-	// 		setItineraryList(res.data;
-	// 	})
+	axios.get(`https://localhost:5173/getItinerary`)
+		.then(res => {
+			setItineraryList(res.data);
+		})
 		
 	const handleOpen = () => {
 		setOpen(true);
@@ -65,8 +65,8 @@ function ItineraryList() {
 
 		try {
 			console.log(itineraryID)
-			alert("https://localhost:3001/itinerary/"+itineraryID )
-			const response = await axios.post("https://localhost:3001/itinerary/"+itineraryID);
+			alert("https://localhost:5173/itinerary/"+itineraryID )
+			const response = await axios.post("https://localhost:5173/itinerary/"+itineraryID);
 			alert("deleted", response.data);
 		} catch (error) {
 			alert("Error deleting post:", error);
