@@ -51,8 +51,7 @@ export default function Popup({ action, data, open, setOpen}) {
   const handleCountryChange = (e) => setCountryField(e.target.value);
   const handleBudgetChange = (e) => setBudgetField(Number(e.target.value));
 
-  // Open and close modal function
-  // const handleOpen = () => setOpen(true);
+  // Close modal function needed for <Modal component>
   const handleClose = () => setOpen(false);
   const handleDestinationInput = (e) => {
     return setDestinationObject((prevState) => {
