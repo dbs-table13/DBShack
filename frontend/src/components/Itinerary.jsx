@@ -11,16 +11,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';import Grid from '@mui/material/Grid';
-// import axios from 'axios';
+import Popup from './Popup';
+import { useState } from "react";
+
+import axios from 'axios';
 import IconButton from '@mui/material/IconButton';
+
+
 function ItineraryList() {
 
+	const [open,setOpen] = useState(false);
+	// const [itineraryDetailsModal,setItineraryDetailsModal] = useState(false);
 	// const [itineraryList,setItineraryList] = useState([])
 	const itineraryList = [
-		{id: 1,country_id:2,user_id:4, budget: 300, title: 'Austria Itinerary'},
-		{id: 2,country_id:4,user_id:4, budget: 300, title: 'Austria Itinerary'},
-		{id: 3,country_id:4,user_id:4, budget: 300, title: 'Austria Itinerary'},
-		{id: 4,country_id:4,user_id:4, budget: 300, title: 'Austria Itinerary'}
+		{itinerary_id: 1,budget: 300, title: 'Austria Itinerary',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
+		{itinerary_id: 2,budget: 300, title: 'Austria Itinerary',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
+
 
 	];	
 
@@ -29,6 +35,10 @@ function ItineraryList() {
 	// 		setItineraryList(res.data;
 	// 	})
 		
+	const handleOpen = () => {
+		setOpen(true);
+	};
+
 
 		
 	const Item = styled(Paper)(({ theme }) => ({
@@ -39,36 +49,61 @@ function ItineraryList() {
 		color: theme.palette.text.secondary,
 	}));
 		
+
+	const handleDeleteClick = (itineraryID) => {
+		// Ask for confirmation
+		const isConfirmed = window.confirm('Are you sure you want to delete this itinerary?');
+	
+		// If the user confirms, proceed with the delete request
+		if (isConfirmed) {
+			deleteItinerary(itineraryID);
+		}
+	}
+	
+	const deleteItinerary=async(itineraryID)=>{
+
+		try {
+			console.log(itineraryID)
+			alert("https://localhost:3001/itinerary/"+itineraryID )
+			const response = await axios.post("https://localhost:3001/itinerary/"+itineraryID);
+			alert("deleted", response.data);
+		} catch (error) {
+			alert("Error deleting post:", error);
+		}
+	}
+
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<Grid container spacing={2}>
 			{itineraryList.map(item => (
-				<Grid item xs={12} md={6} lg={4} key={item.id}>
+				<Grid item xs={12} md={6} lg={4} key={item.itinerary_id}>
 				<Item sx={{ padding: 0 }}>
 					<Card>
-					<CardActionArea>
-						<CardMedia
-						component="img"
-						height="200"
-						image="src/static/images/pexels-pixabay-461755.jpg"
-						alt="green iguana"
-						/>
-						<CardContent>
-						<Typography gutterBottom variant="h5" component="div">
-							{item.title}
-						</Typography>
-						<Typography variant="body2" color="text.secondary">
-							{item.budget}
-						</Typography>
-						</CardContent>
-					</CardActionArea>
-					<IconButton onClick={() => { alert("Edit") }}>
-						<EditRoundedIcon></EditRoundedIcon>
-					</IconButton>
-					<IconButton onClick={() => { alert("Delete") }}>
-						<DeleteForeverRoundedIcon></DeleteForeverRoundedIcon>
-					</IconButton>
-					</Card>
+						<CardActionArea>
+							<CardMedia
+							component="img"
+							height="200"
+							image="./src/static/images/pexels-pixabay-461755.jpg"
+							alt="green iguana"
+							/>
+							<CardContent>
+							<Typography gutterBottom variant="h5" component="div">
+								{item.title}
+							</Typography>
+							<Typography variant="body2" color="text.secondary">
+								{item.budget}
+							</Typography>
+							</CardContent>
+						</CardActionArea>
+						<IconButton onClick={() => {handleOpen}}>
+							<EditRoundedIcon></EditRoundedIcon>
+						</IconButton>
+						<IconButton onClick={() => { handleDeleteClick(item.itinerary_id) }}>
+							<DeleteForeverRoundedIcon></DeleteForeverRoundedIcon>
+						</IconButton>
+						<Popup action="update" data={item} open={open} setOpen={setOpen}>
+						</Popup>					
+						</Card>
 				</Item>
 				</Grid>
 			))}

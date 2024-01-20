@@ -16,7 +16,7 @@ const Dashboard = () => {
 			<h1>Dashboard</h1>
 				<ItineraryList/>
 			{/* Bottom is Esther */}
-			{/* <Destination /> */}
+			<Destination />
 		</div>
 	);
 };
