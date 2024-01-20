@@ -4,12 +4,13 @@ import Destination from "./components/Destination.jsx";
 import Login from "./pages/Login.jsx";
 import Popup from "./components/Popup.jsx";
 import AddDestination from "./components/AddDestination.jsx";
+import Navbar from "./components/Navbar.jsx";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <h1>React App</h1>
+      <h1>Travel Application</h1>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
