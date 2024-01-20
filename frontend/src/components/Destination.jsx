@@ -72,14 +72,16 @@ const MyDestinations = ({ dest }) => {
               ${dest.budget}
             </Typography>
           </CardContent>
-          <Button
-            variant="contained"
-            m={2}
-            p={2}
-            onClick={() => handleAddDestination()}
-          >
-            Add <FaPlusCircle />
-          </Button>
+          <div>
+            <Button
+              className="center"
+              m={2}
+              p={2}
+              onClick={() => handleAddDestination()}
+            >
+              <span>Add </span> <FaPlusCircle m={2} className="center" />
+            </Button>
+          </div>
         </Card>
       </Box>
     </div>
@@ -94,21 +96,20 @@ const Destination = () => {
           <MyDestinations key={index} dest={destination} />
         </div>
       ))}
-      <Box sx={{ maxWidth: 345 }} m={2}>
-        <Card p={2}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Add your own destination
-            </Typography>
-          </CardContent>
-          <Button variant="" m={2} p={2}>
-            <FaPlusCircle
-              className="big-button"
-              onClick={() => handleAddDestination()}
-            />
-          </Button>
-        </Card>
-      </Box>
+      <div className="center">
+        <Box sx={{ maxWidth: 345 }} m={2} className="center">
+          <Card p={2}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Add a new destination
+              </Typography>
+              <Button variant="" m={2} p={2} className="cente">
+                <FaPlusCircle className="big-button" />
+              </Button>
+            </CardContent>
+          </Card>
+        </Box>
+      </div>
     </div>
   );
 };
