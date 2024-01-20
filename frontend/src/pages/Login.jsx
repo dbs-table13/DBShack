@@ -1,34 +1,61 @@
-//create login page and add it to the routes
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './login.css'; // Import your CSS file
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
-function Login() {
-    return (
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:3001/users/login', {
+        username, // Change email to username
+        password,
+      });
+      console.log('Login successful:', response.data);
+      localStorage.setItem('token', response.data.access_token);
+      alert("Login successful");
+      navigate('/home');
+    } catch (error) {
+      console.error('Login failed:', error.response.data.error);
+      setErrorMessage(error.response.data.error);
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <form onSubmit={handleLogin}>
         <div>
-            <h1>Plan Your Itinerary!</h1>
-            <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
-                <h2>LOGIN</h2>
-                <form>
-                    <div className='mb-3'>
-                        <label htmlFor='email'><strong>Email</strong></label>
-                        <input type='email' placeholder='Enter Email' className='form-control rounded-0'/>
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor='password'><strong>Password</strong></label>
-                        <input type='password' placeholder='Enter Password' className='form-control rounded-0'/>
-                    </div>
-                    <div>
-                        <Link to='/dashboard'><button className='btn btn-success w-100 rounded-0'>Login</button></Link>
-                    </div>
-                    <div>
-                        <Link to='/signup' className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Create Account</Link>
-                    </div>
-                </form>
-            </div>
+          <label>Username:</label> {/* Change Email to Username */}
+          <input
+            type="text" // Change type to text
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="form-input"
+          />
         </div>
-    );
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="form-input"
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 };
 
-export default Login;
-
+export default LoginForm;
