@@ -4,9 +4,17 @@
 }
 
 .policies-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* This will create 3 columns of equal width */
-    gap: 10px;
-    /* Add space between grid items */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    flex: 0 0 calc(33.333333% - 20px);
+    /* Adjust the percentage and subtract the desired margin */
+    margin: 10px;
+}
+
+.big-button {
+    width: 50px;
+    height: 50px;
 }

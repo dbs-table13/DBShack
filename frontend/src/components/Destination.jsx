@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { FaPlusCircle } from "react-icons/fa";
 import "../Destination.css";
+import axios from "axios";
+import { useEffect} from "react";
 
 const destinationsToGo = [
 	{
@@ -33,12 +35,25 @@ const destinationsToGo = [
 		budget: 1000,
 	},
 ];
-
 const MyDestinations = ({ dest }) => {
+    // useEffect(() => {
+	// 	if (employeeId) {
+	// 		axios
+	// 			.get(`http://localhost:3001/xxxx`, {
+	// 				params: { employeeId },
+	// 			})
+	// 			.then((response) => {
+	// 				setPolicies(response.data);
+	// 			})
+	// 			.catch((error) => {
+	// 				console.log(error);
+	// 			});
+	// 	}
+	// }, []);
+
 	return (
 		<div>
 			<Box sx={{ maxWidth: 345 }} m={2}>
-				<div>Destination</div>
 				<Card p={2}>
 					<CardMedia
 						component="img"
@@ -57,7 +72,7 @@ const MyDestinations = ({ dest }) => {
 							${dest.budget}
 						</Typography>
 					</CardContent>
-					<Button variant="contained" m={2} p={2}>
+					<Button variant="contained" m={2} p={2} onClick={() => handleAddDestination()}>
 						Add <FaPlusCircle />
 					</Button>
 				</Card>
@@ -70,10 +85,22 @@ const Destination = () => {
 	return (
 		<div className="policies-grid">
 			{destinationsToGo.map((destination, index) => (
-				<div className="flex-item" key={index}>
+				<div className="flex-item relative" key={index}>
 					<MyDestinations key={index} dest={destination} />
 				</div>
 			))}
+			<Box sx={{ maxWidth: 345 }} m={2}>
+				<Card p={2}>
+					<CardContent>
+						<Typography gutterBottom variant="h5" component="div">
+							Add your own destination
+						</Typography>
+					</CardContent>
+					<Button variant="" m={2} p={2} >
+						<FaPlusCircle className="big-button" onClick={() => handleAddDestination()}/>
+					</Button>
+				</Card>
+			</Box>
 		</div>
 	);
 };
