@@ -6,11 +6,12 @@ import Popup from "./components/Popup.jsx";
 import AddDestination from "./components/AddDestination.jsx";
 import Navbar from "./components/Navbar.jsx";
 import "./App.css";
+import "./index.css"
 
 function App() {
   return (
     <>
-      <h1>Travel Application</h1>
+      <Navbar />
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />

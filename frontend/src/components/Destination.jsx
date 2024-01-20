@@ -9,6 +9,7 @@ import "../Destination.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 const destinationsToGo = [
   {
