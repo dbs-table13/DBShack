@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Destination from "../components/Destination";
 
-const MyItenary = ({ itenary }) => {
+const MyItenary = () => {
 	return (
 		<Box sx={{ maxWidth: 345 }}>
 			<Card>
