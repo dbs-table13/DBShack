@@ -1,0 +1,12 @@
+.flex-item {
+    flex: 1 0 33.33%;
+    /* This will ensure that each item takes up approximately a third of the row */
+}
+
+.policies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* This will create 3 columns of equal width */
+    gap: 10px;
+    /* Add space between grid items */
+}
