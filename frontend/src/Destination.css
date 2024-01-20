@@ -1,17 +1,13 @@
-.flex-item {
-    flex: 1 0 33.33%;
-    /* This will ensure that each item takes up approximately a third of the row */
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .policies-grid {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flex-item {
-    flex: 0 0 calc(33.333333% - 20px);
-    /* Adjust the percentage and subtract the desired margin */
-    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Adjust '300px' as needed */
+    gap: 16px;
+    /* Adjust the gap size as needed */
 }
 
 .big-button {
