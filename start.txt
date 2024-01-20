@@ -1,0 +1,5 @@
+cd backend
+npm init -y
+npm install express mysql cors nodemon
+cd ../
+npm create vite@latest
