@@ -39,10 +39,10 @@ const countries = ["Singapore", "Japan", "Korea"];
 export default function Popup({ action, data, open, setOpen}) {
   // eslint-disable-next-line react/prop-types
   const { destinations, budget, country, title, itinerary_id } = data;
-  const [titleField, setTitleField] = useState(title);
-  const [countryField, setCountryField] = useState(country);
-  const [budgetField, setBudgetField] = useState(budget);
-  const [destinationObject, setDestinationObject] = useState(destinations);
+  const [titleField, setTitleField] = useState(title || "");
+  const [countryField, setCountryField] = useState(country || "");
+  const [budgetField, setBudgetField] = useState(budget || 0);
+  const [destinationObject, setDestinationObject] = useState(destinations || {});
 
   //titleField
   const handleTitleChange = (e) => setTitleField(e.target.value);
