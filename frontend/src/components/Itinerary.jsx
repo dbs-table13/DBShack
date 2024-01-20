@@ -2,6 +2,7 @@
 import '../App.css'
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -24,8 +25,8 @@ function ItineraryList() {
 	// const [itineraryDetailsModal,setItineraryDetailsModal] = useState(false);
 	// const [itineraryList,setItineraryList] = useState([])
 	const itineraryList = [
-		{itinerary_id: 1,budget: 300, title: 'Austria Itinerary',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
-		{itinerary_id: 2,budget: 300, title: 'Austria Itinerary',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
+		{itinerary_id: 1,budget: 300, title: 'Austria Itinerary1',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
+		{itinerary_id: 2,budget: 300, title: 'Austria Itinerary2',destinations:[{id:1,name:"Marina Bay Sands",cost:50,notes:"Iconic hotel"},{id:2,name:"Sentosa Island",cost:50,notes:"Futuristic hotel"}]},
 
 
 	];	
@@ -107,6 +108,11 @@ function ItineraryList() {
 				</Item>
 				</Grid>
 			))}
+			    <Grid item xs={12} md={6} lg={4}>
+					<IconButton onClick={handleOpen}>
+						<AddCircleOutlineRoundedIcon />
+					</IconButton>
+				</Grid>
 			</Grid>	  	
 		</Box>
 	);

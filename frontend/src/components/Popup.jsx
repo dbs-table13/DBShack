@@ -31,6 +31,7 @@ const style = {
   boxShadow: 24,
   padding: 16,
   p: 4,
+  backgroundColor: "white"
 };
 
 const countries = ["Singapore", "Japan", "Korea"];
