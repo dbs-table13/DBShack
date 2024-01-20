@@ -8,6 +8,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import Fab from '@mui/material/Fab';
 import "../Destination.css";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const destinationsToGo = [
@@ -92,6 +93,12 @@ const MyDestinations = ({ dest }) => {
 };
 
 const Destination = () => {
+  const navigate = useNavigate();
+
+  const handleAdd = (event) => {
+    navigate("/AddDestination");
+
+  }
   return (
     <>
       <h1 className="center">Explore Destinations</h1>
@@ -104,15 +111,12 @@ const Destination = () => {
         <Box sx={{ maxWidth: 345 }} m={2} className="center">
             <Card p={2}>
               <CardContent className="center">
-                <Button variant="outlined" startIcon={<AddIcon />}>
+                <Button variant="outlined" startIcon={<AddIcon />} onClick={handleAdd}>
                   Add Your Own Destination
                 </Button>
               </CardContent>
             </Card>
           </Box>
-        <div className="center">
-    
-        </div>
       </div>
     </>
   );
