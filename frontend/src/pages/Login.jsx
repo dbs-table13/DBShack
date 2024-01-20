@@ -32,7 +32,7 @@ const Login = () => {
       console.log("Login successful:", response.data);
       localStorage.setItem("token", response.data.access_token);
       alert("Login successful");
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Login failed:", error.response.data.error);
       setErrorMessage(error.response.data.error);
