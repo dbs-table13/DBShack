@@ -6,17 +6,17 @@ import Popup from "./components/Popup.jsx";
 import "./App.css";
 
 function App() {
-	return (
-		<>
-			<h1>React App</h1>
-			<Routes>
-				<Route path="/dashboard" element={<Dashboard />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/destination" element={<Destination />} />
-				<Route path="/popup" element={<Popup />} />
-			</Routes>
-		</>
-	);
+  return (
+    <>
+      <h1>React App</h1>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/destination" element={<Destination />} />
+        <Route path="/popup" element={<Popup />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
