@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import "./App.css";
 
 function App() {
-
 	return (
 		<>
 			<h1>React App</h1>
